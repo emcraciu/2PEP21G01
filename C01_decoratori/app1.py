@@ -1,5 +1,5 @@
 # Some user does:
-from modul1 import func1
+from part1 import func1
 print(80*"#")
 print(func1("Emanuel"))
 

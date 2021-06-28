@@ -1,5 +1,6 @@
 # Example of nested function
 from time import sleep
+from functools import wraps
 
 
 def conversation():
@@ -12,6 +13,7 @@ def conversation():
 # Decorator
 def delay(seconds=0):
     def decorator(func):
+        @wraps(func)
         def wrapper(*args, **kwargs):
             """This function has some other docstring"""
             print('print before')

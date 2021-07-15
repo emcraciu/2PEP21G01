@@ -3,14 +3,30 @@ from time import sleep
 from functools import wraps
 
 
+# recap for
 def conversation():
     def hello():
         print('Hello')
 
     return hello
+
+
 # hello() -  function exists only inside parent function namespace we cannot call it outside "conversation"
 
 # Decorator
+def decorator(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        """This function has some other docstring"""
+        print('print before')
+        result = func(*args, **kwargs)
+        print('print after')
+        return result
+
+    return wrapper
+
+
+# Decorator with arguments
 def delay(seconds=0):
     def decorator(func):
         @wraps(func)
@@ -43,7 +59,7 @@ if __name__ == "__main__":
 
     result = decorator(func1)
     print(type(result))
-    result()
+    result('FirstArgument')
 
     # Some user does:
-    func1()
+    func1('FirstArgument')

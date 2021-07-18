@@ -38,7 +38,9 @@ def delay(seconds=0):
             sleep(seconds)
             print('print after')
             return result
+
         return wrapper
+
     return decorator
 
 
@@ -57,9 +59,9 @@ if __name__ == "__main__":
     print(type(hello))
     hello()
 
-    result = decorator(func1)
-    print(type(result))
-    result('FirstArgument')
+    decorated_function = decorator(func1)
+    print(type(decorated_function))
+    decorated_function('FirstArgument')
 
     # Some user does:
     func1('FirstArgument')

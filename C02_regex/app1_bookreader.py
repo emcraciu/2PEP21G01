@@ -27,7 +27,8 @@ class Book:
         print(match.group('chapter'))
 
 
-book1 = Book(r"process_text.md")
-print(book1.fileopen)
-print(book1.search_patter(r"\d\.\d\.\d"))
-book1.get_chapter()
+if __name__ == "__main__":
+    book1 = Book(r"process_text.md")
+    print(book1.fileopen)
+    print(book1.search_patter(r"\d\.\d\.\d"))
+    book1.get_chapter()

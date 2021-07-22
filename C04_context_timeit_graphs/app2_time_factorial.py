@@ -44,11 +44,11 @@ def timing_timeit():
     for_loop_values = []
     recursive_values = []
     for i in range(1, 255):
-        for_loop_values.append(timeit.timeit("factorial1(255)",
+        for_loop_values.append(timeit.timeit(f"factorial1({i})",
                                              setup=f'from {__name__} import factorial1',
                                              number=100))
     for i in range(1, 255):
-        recursive_values.append(timeit.timeit("factorial2(255)",
+        recursive_values.append(timeit.timeit(f"factorial2({i})",
                                               setup=f'from {__name__} import factorial2',
                                               number=100))
     return for_loop_values, recursive_values

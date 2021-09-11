@@ -1,0 +1,21 @@
+import poplib
+
+username = 'pinkiwinkiwinki555'
+password = '1234pinki'
+pop_url = 'pop.googlemail.com'
+
+
+def get_mail_pop(username: str, password: str):
+    con = poplib.POP3_SSL(pop_url)
+    con.user(username)
+    con.pass_(password)
+    for email_number in range(1, len(con.list()[1]) + 1):
+        for msg in con.retr(email_number)[1]:
+            yield msg
+    con.quit()
+
+
+if __name__ == '__main__':
+    mails = get_mail_pop(username, password)
+    for mail in mails:
+        print(mail)

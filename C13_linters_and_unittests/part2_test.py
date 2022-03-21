@@ -1,5 +1,5 @@
 import unittest
-from part2 import my_area_function
+from part2 import my_area_function, my_func
 
 
 class TestMyAreaFunction(unittest.TestCase):
@@ -15,6 +15,9 @@ class TestMyAreaFunction(unittest.TestCase):
 
     def test_return_type(self):
         self.assertRaises(TypeError, my_area_function, 2, True)
+
+    def test_example(self):
+        self.assertEqual(my_func -2, 2, None)
 
 
 if __name__ == '__main__':

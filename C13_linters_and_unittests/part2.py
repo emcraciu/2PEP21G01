@@ -4,3 +4,7 @@ def my_area_function(length: int, width: int):
     if length < 0 or width < 0:
         raise ValueError
     return length * width
+
+def my_func(a, b):
+    if a + b > 3:
+        raise ValueError

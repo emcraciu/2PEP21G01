@@ -10,5 +10,10 @@ def time_getter():
     return json.loads(my_time_str)
 
 
+def my_func(message):
+    x = json.loads(message)
+    return x
+
+
 if __name__ == "__main__":
     print(time_getter())

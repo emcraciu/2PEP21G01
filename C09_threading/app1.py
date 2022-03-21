@@ -58,7 +58,6 @@ class Connector():
     def generate_local_secret(self):
         self.__local_secret = random.randint(2, self.prime)
         x = pow(self.base, self.__local_secret) % self.prime
-
         print(x)
         return x
 
@@ -73,8 +72,14 @@ class Client(Connector):
         self.generate_prime()
         self.sock.send(bytes(str(self.prime), encoding='UTF-8'))
         message = str(self.sock.recv(4096), encoding='UTF-8')
-
         print('Client ' + message)
+        if message == 'okay':
+            self.generate_base()
+            self.sock.send(bytes(str(self.base), encoding='UTF-8'))
+        message = str(self.sock.recv(4096), encoding='UTF-8')
+        print('Client ' + message)
+        if message == 'okay':
+            self.generate_local_secret()
 
 
 class Server(Connector):
@@ -93,17 +98,21 @@ class Server(Connector):
         print(addr)
         with connection:
             message = str(connection.recv(4096), encoding='UTF-8')
-            print('server ' + message)
+            print('Server ' + message)
             self.prime = int(message)
-            connection.send(bytes("okay", encoding='UTF-8'))
+            connection.send(bytes('okay', encoding='UTF-8'))
+            message = str(connection.recv(4096), encoding='UTF-8')
+            print('Server ' + message)
+            self.base = int(message)
+            connection.send(bytes('okay', encoding='UTF-8'))
 
     def stop(self):
         self.th1.join()
 
 
 if __name__ == '__main__':
-    client = Client('localhost', 1205)
-    server = Server('localhost', 1205)
+    client = Client('localhost', 1202)
+    server = Server('localhost', 1202)
     server.start()
     client.start()
     server.stop()

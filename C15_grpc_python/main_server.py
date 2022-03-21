@@ -6,6 +6,7 @@ import grpc
 import hello_pb2
 import hello_pb2_grpc
 
+
 class Greeter(hello_pb2_grpc.GreeterServicer):
 
     def SayHello(self, request, context):
@@ -19,6 +20,7 @@ def serve():
     server.add_insecure_port('[::]:30100')
     server.start()
     server.wait_for_termination()
+
 
 if __name__ == '__main__':
     logging.basicConfig()
